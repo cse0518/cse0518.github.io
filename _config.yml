@@ -1,28 +1,30 @@
 # Test
 # bundle exec jekyll serve
+# jekyll serve --skip-initial-build
 # localhost:4000
 
 # Site settings
 title: 최승은 기술 블로그 # site title
 description: >- # site description
-  He's writing in Bahasa about web technology and experience as a journal 
-  for documentation things that he learned, meet him <a href="https://github.com/piharpi" target="_blank" rel="noopener">@github</a>.
+  백엔드 개발자로 성장해가는 최승은입니다. 이 블로그에는 저의 깊은 생각을 담으려고합니다.
+  g787@naver.com으로 연락가능합니다.
 lang: en-US # default lang
-timezone: Asia/Jakarta # set your timezone
-image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
+timezone: Asia/Seoul # set your timezone
+# image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 repo: https://github.com/cse0518/cse0518.github.io # site repo [optional]
 mode: dark # default theme "dark" | "light"
 
 # Profile settings
 author:
-  name: 최승은 # author name
+  name: 최승은 기술 블로그 # author name
   bio: >- # tell to the world
-    The minimalist Jekyll theme, light and dark mode support, for running a personal site and blog,  
-    meet me at <a href="https://github.com/cse0518" target="_blank" rel="noopener">@github</a>.
-  username: cse0518 # general username
+    나를 죽이지 못하는 고통은 나를 더 강하게 만든다.<br>
+    갈 길이 멀다. 꾸준히 성장하자!<br>
+    <a href="https://github.com/cse0518" target="_blank" rel="noopener">@github</a>.
+  username: 최승은 # general username
   github: cse0518 # github username
-  twitter: twitter_username # twitter username
-  facebook: facebook_username # facebook username
+  # twitter: twitter_username # twitter username
+  # facebook: facebook_username # facebook username
   email: g787@naver.com # email adress
   avatar: /assets/img/avatar.jpg # change with your own avatar
 
@@ -64,7 +66,7 @@ jekyll_compose:
     description:
 
 # Homepage limit posts
-number_of_posts: 5
+number_of_posts: 7
 
 # Build settings
 # theme: klise
