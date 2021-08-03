@@ -1,61 +1,23 @@
-# Klisé
+# cse0518.github.io
+프로그래밍을 하면서 생긴 의문점에 대한 깊은 고찰을 여기에 남겨봅니다.
 
-Klisé is minimalist Jekyll theme for running a personal site and blog running on Jekyll.<br>
-For demo <a href="https://klise.now.sh" target="_blank" rel="noopener">klise.now.sh</a>
-
-## Features
-
-- [x] Light & Dark Mode support :waxing_crescent_moon:
-- [x] Customizable (using `.scss`)
-- [x] Responsive (desktop, tab and mobile)
-- [x] Mobile First Design
-- [x] SEO Optimized
-- [x] Images of post Organized ([`jekyll-postfiles`](https://github.com/nhoizey/jekyll-postfiles))
-- [x] Generate Sitemap ([`jekyll-sitemap`](https://github.com/jekyll/jekyll-sitemap))
-- [x] RSS Feed ([`jekyll-feed`](https://github.com/jekyll/jekyll-feed))
-- [x] Syntax Highlighter ([`rouge`](https://github.com/rouge-ruby/rouge))
-- [x] Next & Previous Post
-- [x] Comment layout, enable in frontmatter if you wish
-- [x] Google analytics
-- [x] HTML Minify ([`jekyll-compress-html`](https://github.com/penibelst/jekyll-compress-html))
-- [x] W3C **Validated**
-- [x] Lighthouse and PageSpeed **Passed**
-
-![Lighthouse Result](./lighthouse.png)
-
-## Backlogs
-
-- [ ] Intergrated with PhotoSwipe.
-- [ ] Add schema.org meta information.
-- [ ] Transform class selector to BEM metodology.
-
-## Installation
-
-Run local server:
-
-```bash
-$ git clone https://github.com/piharpi/jekyll-klise.git
-$ cd jekyll-klise
-$ bundle install
-$ bundle exec jekyll serve
-```
-
-Navigate to `localhost:4000`. You're Welcome, Fork and be Stargazer.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/piharpi/jekyll-klise) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/piharpi/jekyll-klise)
-
-## Limitation
-
-- Since [`jekyll-postfiles`](https://github.com/nhoizey/jekyll-postfiles#compatibility) plugin isn't supported by github pages, this cause will make your site problems, path broken or post images won't show up, you can host alternatively using likes [netlify.com](https://netlify.com), [vercel.com](https://vercel.com) or [surge.sh](https://surge.sh) services, which support 3rd party.
-
-## Contributing
-
-If you see any typos or formatting errors in a post, or want to helping reduce backlogs or any other issue that needs to be addressed, please do not hesitate to open a pull request and fix it!, please read [contributing](./CONTRIBUTING.md) before PR.
-
-Yeaaa feel free to open a pull request.
-## Support
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W7MJ4X) [![saweria.co](./assets/img/saweria-button.png)](https://saweria.co/piharpi)
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+## 다룰만한 주제
+- **StringBuilder와 StringBuffer의 차이점**
+- 자바의 레퍼런스 개념, call by value & call by reference
+- Object
+  - 모든 객체에는 Object의 메소드를 호출할 수 있다
+  - toString(), equals(), hashCode() 등
+- Git 협업의 흐름 이해
+  - 브랜치를 어떻게 나누는지
+  - 브랜치가 merge 되면 어떻게 되는지
+  - merge 하다가 충돌이 났을때 어떻게 해결하는지
+- 캡슐화, 상속성, 추상화, 다형성
+- overload, override
+- UML : class diagram (객체간의 연관관계를 설명하기 위한 다이어그램)
+- Tool :
+  - https://draw.io/
+  - https://staruml.io/
+- 객체지향 설계 5가지 원칙
+  - SOLID
+- **23가지 패턴**
+  - 23가지 디자인 패턴을 통해서 SOLID 원칙을 이해하는 것이 효과적
