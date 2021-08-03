@@ -8,8 +8,9 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.1.0"
-gem "tzinfo-data"
+gem 'github-pages', group: :jekyll_plugins
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'wdm', '>= 0.1.0'
 gem "webrick", "~> 1.7"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
