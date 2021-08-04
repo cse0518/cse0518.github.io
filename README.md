@@ -21,3 +21,6 @@
   - SOLID
 - **23가지 패턴**
   - 23가지 디자인 패턴을 통해서 SOLID 원칙을 이해하는 것이 효과적
+- 코딩 컨벤션
+  - https://google.github.io/styleguide/javaguide.html
+  - https://naver.github.io/hackday-conventions-java/
