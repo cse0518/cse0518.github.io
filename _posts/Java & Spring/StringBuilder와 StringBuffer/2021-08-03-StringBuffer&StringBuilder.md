@@ -1,7 +1,7 @@
 ---
-title: StringBuffer와 StringBuilder
+title: (JAVA) StringBuffer와 StringBuilder
 date: 2021-08-03 23:00:00 +Z
-tags: [java]
+tags: [JAVA]
 description: StringBuffer와 StringBuilder에 대한 탐구
 ---
 

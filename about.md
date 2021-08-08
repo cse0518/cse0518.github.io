@@ -21,4 +21,4 @@ You can [report](http://github.com/piharpi/jekyll-klise/issues/new) if there is 
 **May You Needs ✨**
 
 - {{ site.author.email }}
-- github.com/{{ site.author.github }}
+- <a href="https://www.github.com/cse0518" target="_blank" rel="noopener noreferrer">github</a>
