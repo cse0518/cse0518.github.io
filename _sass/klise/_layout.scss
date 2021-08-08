@@ -190,8 +190,8 @@
   }
 
   .author-avatar {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     border-radius: 100%;
     user-select: none;
     background-color: $black;
@@ -204,13 +204,13 @@
 
   .author-name {
     font-size: 1.7em;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   .author-bio {
     margin: 0 auto;
     opacity: 0.9;
-    max-width: 393px;
+    max-width: 450px;
     line-height: 1.688;
   }
 }
