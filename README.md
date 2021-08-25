@@ -19,3 +19,4 @@
 - 코딩 컨벤션
   - https://google.github.io/styleguide/javaguide.html
   - https://naver.github.io/hackday-conventions-java/
+- forEach, map, filter, reduce

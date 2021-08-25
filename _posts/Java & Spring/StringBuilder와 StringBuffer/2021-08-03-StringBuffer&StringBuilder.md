@@ -18,6 +18,17 @@ java의 기본 패키지들은 따로 import 하지 않아도 기본적으로 �
 
 먼저 **String**에 대한 문서 내용을 확인해보면 Serializable, Comparable, CharSequence 인터페이스가 상속되어 있고, public final class로 되어 있다. serialize가 가능하며 문자열이고 비교가능한 값이라는 것을 알 수 있다. 또한 final class이기 때문에 String class를 상속받을 수는 없다.
 
+#### Constant Pool
+
+Java에서는 String을 특별하게 취급한다. Java heap 영역 안에 String constant pool이 존재하는데, String을 literal로 생성하면 Heap 영역 안에 있는 constant pool에 저장되어 재사용된다.  
+그림으로 나타내면 아래와 같다.
+
+<img src="https://user-images.githubusercontent.com/60170616/130737651-aef4242e-cd72-4930-baae-6cc8f04f71b1.png"/>
+
+String 객체를 생성하여 저장하면 중복되는 값도 계속 heap 영역에 저장되기 때문에 메모리 낭비가 생긴다. 따라서 중복되는 문자열은 literal로 생성하여 constant pool에 저장되게 하는게 유리하다. constant pool에 저장된 문자열은 같은 주소값을 참조한다는 점도 참고하여 코드 설계에 적용하는것이 좋다.  
+추가로 String 객체를 생성하여 intern() 메소드를 호출하면 constant pool에 접근하여 이미 있는 문자열을 참조할 수 있다.
+
+<br/>
 <img src="https://user-images.githubusercontent.com/60170616/128123912-f44d001b-7f58-44fd-9ff0-75aad35843b6.png"/>
 
 그리고 문자열을 더할때는 **StringBuffer** 또는 **StringBuilder**를 사용하여 구현한다고 한다.  
@@ -30,6 +41,7 @@ java의 기본 패키지들은 따로 import 하지 않아도 기본적으로 �
 실제로 어떻게 다른지 확인해보자.
 
 ```java
+
 // 문자열 test1의 값과 주소값 확인
 String test1 = "TEST 1";
 System.out.println("test1: " + test1);
@@ -51,8 +63,10 @@ for (int a = 0; a = 3; a++) {
     System.out.println("sb: " + sb);
     System.out.println("sb reference: " + sb.hashCode());
 }
+
 ```
 ```java
+
 test1: TEST 1
 test1 reference: -1823841245
 test1: TEST 10
@@ -67,6 +81,7 @@ sb: 01
 sb reference: 471910020
 sb: 012
 sb reference: 471910020
+
 ```
 
 위의 경우처럼 단순히 문자열에 한 글자를 더하게 되면, 새로운 주소값을 갖는 새 문자열을 생성하여 저장하게 된다. 이렇게 문자열에 문자를 반복적으로 수정이 이뤄지는 상황은 비효율적이다. 이러한 경우 **StringBuffer**를 사용하여 문자를 append 해주면 같은 주소값을 참조하여 하나의 문자열에 계속 추가를 해주게 되어 더 효율적인 것이다.
@@ -85,10 +100,49 @@ sb reference: 471910020
 #### StringBuffer
   - synchronization 적용(동기적)
   - 여러 스레드에서 사용하기에 안전
+<br/>
+
+싱글 스레드 환경에서 StringBuilder와 StringBuffer의 성능을 직접 비교해보면 다음과 같다.
+```java
+
+StringBuffer sBuffer = new StringBuffer();
+StringBuilder sBuilder = new StringBuilder();
+
+new Thread(() -> {
+    long startTime = System.currentTimeMillis();
+    for (int i = 0; i < 10000000; i++) {
+        sBuffer.append(i);
+    }
+    long endTime = System.currentTimeMillis();
+
+    // StringBuffer에 1천만번 append를 한 시작 시간과 끝난 시간 비교
+    System.out.println("StringBuffer -> " + (endTime - startTime));
+}).start();
+
+new Thread(() -> {
+    long startTime = System.currentTimeMillis();
+    for (int i = 0; i < 10000000; i++) {
+        sBuilder.append(i);
+    }
+    long endTime = System.currentTimeMillis();
+
+    // StringBuilder에 1천만번 append를 한 시작 시간과 끝난 시간 비교
+    System.out.println("StringBuilder -> " + (endTime - startTime));
+}).start();
+
+```
+```java
+
+StringBuilder -> 637
+StringBuffer -> 849
+
+```
+하나의 스레드에서는 StringBuilder가 조금 더 빠른것을 확인할 수 있다.
 
 결론적으로 하나의 스레드라면 지역 변수로 **StringBuilder**를, 여러개의 스레드라면 전역 변수로 **StringBuffer**를 사용하는 것이 효과적이다.
 
 ---
 # - References
 <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank" rel="noopener noreferrer">오라클 api 공식 문서</a>  
-<a href="https://novemberde.github.io/2017/04/15/String_0.html" target="_blank" rel="noopener noreferrer">Java에서 String, StringBuilder, StringBuffer의 차이</a>
+<a href="https://novemberde.github.io/2017/04/15/String_0.html" target="_blank" rel="noopener noreferrer">Java에서 String, StringBuilder, StringBuffer의 차이</a>  
+<a href="https://hwanny.netlify.app/java/string,-stringbuffer,-stringbuilder/" target="_blank" rel="noopener noreferrer">String, StringBuffer, StringBuilder</a>
