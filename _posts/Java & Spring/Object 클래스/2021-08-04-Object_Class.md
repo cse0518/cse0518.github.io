@@ -16,7 +16,7 @@ java.lang 패키지에는 Object 클래스가 포함되어 있다. 그리고 이
 # - Object Class의 11가지 method
 
 |Method|설명|
-|:----:|----|
+|------|----|
 |`protected Object clone()`|: 해당 객체의 복제본을 생성하여 반환함.|
 |`boolean equals(Object obj)`|: 해당 객체와 전달받은 객체가 같은지 여부를 반환함.|
 |`protected void finalize()`|: 해당 객체를 더는 아무도 참조하지 않아 가비지 컬렉터가 객체의 리소스를 정리하기 위해 호출함.|
@@ -118,8 +118,11 @@ toString()을 override해서 return 값을 바꿔줄 수 있다.
 ## - equals()
 
 equals() method는 두 객체가 같은 객체인지 비교할 때 사용한다.  
-'==' 연산자가 두 값이 같은지를 비교하는 것과 다르게,  
-equals() method는 두 객체의 주소값이 일치하는, 같은 객체인지를 비교하는 것이다.
+여기서 **동등성**과 **동일성**에 대해 생각해볼 필요가 있다.  
+주로 primitive type의 자료형이 같은 지를 비교할 때 **'=='** 연산자를 사용하는데, 이는 두 object가 같은 정보를 담고 있는지를 비교한다.  
+즉, 동등한지를 비교한다.  
+그리고 두 객체가 같은 지를 비교할 때는 equals() method를 사용하는데, 이는 두 object가 완전히 같은, 동일한 object인지 비교하는 것이다.  
+두 객체가 같은 주소값을 가지는 같은 객체라는 것이 동일하다고 표현된다.
 
 ```java
 public class User {
@@ -131,13 +134,19 @@ public class User {
         this.name = name;
     }
 
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+
     public static void main(String[] args) {
         User user1 = new User(1000, "최승은");
         User user2 = new User(1000, "최승은");
         
-        System.out.println(user1.equals(user2));
+        // 두 개의 다른 객체가 같은 값을 가지고 있다.
+        System.out.println(user1.equals(user2)); // 서로 다른 객체이기 때문에 false
+
         user1 = user2; // 두 변수가 같은 주소를 가리키게 된다.
-        System.out.println(user1.equals(user2));
+        System.out.println(user1.equals(user2)); // 같은 주소값의 같은 객체이기 때문에 true
     }
 }
 ```
@@ -146,9 +155,17 @@ public class User {
 false
 true
 ```
-
+---
 <br>
 
+- equals() 기본 형태
+
+```java
+public boolean equals(Object obj) {
+    return (this == obj);
+}
+```
+equals의 기본 형태는 이렇다. object가 동일한지를 비교하는 것이다.  
 그렇다면 equals()는 어떤 경우에 override해서 사용할까?  
 예를 들어 보겠다.
 
@@ -246,8 +263,8 @@ public class User {
 user1.equals(user2): true
 user1.hashCode(): 1000
 user2.hashCode(): 1000
-System.identityHashCode(user1): 901506536
-System.identityHashCode(user2): 747464370
+System.identityHashCode(user1): 1804094807
+System.identityHashCode(user2): 951007336
 ```
 
 위의 예시는 id를 해시코드 값으로 반환하여 출력하게 된다.  
@@ -257,20 +274,35 @@ System.identityHashCode(user2): 747464370
 
 #### Integer class
 
-```java
-Integer i1 = 100;
-Integer i2 = 100;
+Integer 클래스도 Object 클래스의 hashCode()를 override하고 있다.
 
-System.out.println("i1.hashCode(): " + i1.hashCode());
-System.out.println("i2.hashCode(): " + i2.hashCode());
+```java
+Integer a = new Integer(1);
+Integer b = new Integer(1);
+
+System.out.println(a==b); // false
+System.out.println(a.equals(b)); // true
+System.out.println("a.hashCode(): " + a.hashCode());
+System.out.println("b.hashCode(): " + b.hashCode());
 ```
 **실행 결과**
 ```java
-i1.hashCode(): 100
-i2.hashCode(): 100
+a.hashCode(): 1
+b.hashCode(): 1
 ```
 
-참고로 Integer 클래스도 Object 클래스의 hashCode()를 override하고 있다.
+위 코드를 보면 a 객체와 b 객체는 같은 값을 갖지만 따로 생성된 다른 객체이다. 따라서 '==' 연산자를 사용하여 비교하면 false가 나온다.  
+하지만 equals() 메소드를 사용하여 비교하면 true가 나온다. 그 이유는 같은 hashcode 주소값을 갖기 때문이다.  
+<br/>
+
+java.lang에 있는 integer 클래스를 보면 hashCode() 메소드가 override 되어있는것을 확인할 수 있다.
+
+```java
+@Override
+public int hashCode() {
+    return Integer.hashCode(value);
+}
+```
 
 <br>
 
