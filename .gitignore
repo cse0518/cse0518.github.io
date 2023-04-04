@@ -1,7 +1,4 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-_drafts
-klise-*.gem
-Gemfile.lock
+public
+resources
+assets/jsconfig.json
+.hugo_build.lock

@@ -1,22 +1,28 @@
-# cse0518.github.io
-프로그래밍을 하면서 생긴 의문점에 대한 깊은 고찰을 여기에 남겨봅니다.
+![image](https://user-images.githubusercontent.com/5889006/190859441-141b5f81-8483-40d2-bd96-ebf85616a46d.png)
 
-## 다룰만한 주제
-- 자바의 레퍼런스 개념, call by value & call by reference
-- Git 협업의 흐름 이해
-  - 브랜치를 어떻게 나누는지
-  - 브랜치가 merge 되면 어떻게 되는지
-  - merge 하다가 충돌이 났을때 어떻게 해결하는지
-- 캡슐화, 상속성, 추상화, 다형성
-- UML : class diagram (객체간의 연관관계를 설명하기 위한 다이어그램)
-- Tool :
-  - https://draw.io/
-  - https://staruml.io/
-- 객체지향 설계 5가지 원칙
-  - SOLID
-- **23가지 패턴**
-  - 23가지 디자인 패턴을 통해서 SOLID 원칙을 이해하는 것이 효과적
-- 코딩 컨벤션
-  - https://google.github.io/styleguide/javaguide.html
-  - https://naver.github.io/hackday-conventions-java/
-- forEach, map, filter, reduce
+# Hugo Theme Stack
+
+<img align="right" width="150" alt="logo" src="https://user-images.githubusercontent.com/5889006/190859553-5b229b4f-c476-4cbd-928f-890f5265ca4c.png">
+
+Card-style Hugo theme designed for bloggers.
+
+## Quickstart
+
+Use this template: [CaiJimmy/hugo-theme-stack-starter](https://github.com/CaiJimmy/hugo-theme-stack-starter)
+
+## Demo
+
+* Starter template demo: [demo.stack.jimmycai.com](https://demo.stack.jimmycai.com)
+* Dev build: [dev.stack.jimmycai.com](https://dev.stack.jimmycai.com)
+
+## Documentation
+
+Visit [stack.jimmycai.com](https://stack.jimmycai.com)
+
+## Copyright
+
+**Licensed under the GNU General Public License v3.0**
+
+Please do not remove the "*Theme Stack designed by Jimmy*" text and link.
+
+If you want to port this theme to another blogging platform, please let me know🙏.
