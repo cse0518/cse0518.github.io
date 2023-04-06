@@ -1,0 +1,322 @@
+<!doctype html><html lang dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Object class와 그 method들에 대한 이해"><title>최승은 Tech Blog</title><link rel=canonical href=/p/object-class/><link rel=stylesheet href=/scss/style.min.53b66a078b58a3c783786b1f2f3af4c1b1cfaf238914106286a35ea0e650ac3d.css><meta property="og:title" content="최승은 Tech Blog"><meta property="og:description" content="Object class와 그 method들에 대한 이해"><meta property="og:url" content="/p/object-class/"><meta property="og:site_name" content="최승은 (Choi SeungEun)"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-08-04T22:40:00+00:00"><meta property="article:modified_time" content="2021-08-04T22:40:00+00:00"><meta name=twitter:title content="최승은 Tech Blog"><meta name=twitter:description content="Object class와 그 method들에 대한 이해"><link rel="shortcut icon" href=/img/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"dark")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hua3cee3deb1e4275bc10d9606bc2857d2_67827_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>😎</span></figure><div class=site-meta><h1 class=site-name><a href=/>최승은 (Choi SeungEun)</a></h1><h2 class=site-description>Back-end Engineer</h2></div></header><ol class=social-menu><li><a href=mailto:csedev0518@gmail.com target=_blank title=Mail rel=me><!doctype html><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentcolor" class="bi bi-envelope" viewBox="0 0 16 16"><path d="M0 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H2a2 2 0 01-2-2V4zm2-1A1 1 0 001 4v.217l7 4.2 7-4.2V4a1 1 0 00-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 002 13h12a1 1 0 00.966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/></svg></a></li><li><a href=https://cse0518.notion.site/SeungEun-Choi-fd3cb8a04edc4c11b0c8607e1c78b296 target=_blank title=Resume rel=me><!doctype html><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-notion" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M7 7h3l6 6"/><path d="M8 7v10"/><path d="M7 17h2"/><path d="M15 7h2"/><path d="M16 7v10h-1l-7-7"/></svg></a></li><li><a href=https://github.com/cse0518 target=_blank title=GitHub rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About</span></a></li><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Dark Mode</span></li></div></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#object-class의-11가지-method>Object Class의 11가지 method</a></li><li><a href=#tostring>toString()</a><ol><li><a href=#tostring의-원형>toString()의 원형</a></li><li><a href=#string>String</a></li></ol></li><li><a href=#equals>equals()</a><ol><li><a href=#equals-기본-형태>equals() 기본 형태</a></li></ol></li><li><a href=#hashcode>hashCode()</a><ol><li><a href=#wrapper-class>Wrapper class</a></li></ol></li><li><a href=#clone>clone()</a></li><li><a href=#finalize>finalize()</a></li><li><a href=#references>References</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/java/ style=background-color:#d2691e;color:#fff>Java</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/object-class/>Object Class</a></h2><h3 class=article-subtitle>Object class와 그 method들에 대한 이해</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Aug 04, 2021</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>6 minute read</time></div></footer></div></header><section class=article-content><p>java.lang 패키지에는 Object 클래스가 포함되어 있다. 그리고 이 Object 클래스는 모든 Java 클래스의 최고 상위 클래스로 모든 클래스는 Object 클래스를 상속받는다.</p><p>따라서 Java의 모든 클래스들은 Object 클래스의 모든 메소드를 바로 사용할 수 있고, 이것을 잘 익혀놓으면 다양하게 활용할 수 있다.</p><p>총 11개의 메소드로 구성되어 있고, 주로 toString(), equals(), hashCode(), clone()을 override 해서 사용한다.<br>메소드들을 좀더 자세히 알아보겠다.</p><br><h2 id=object-class의-11가지-method>Object Class의 11가지 method</h2><div class=table-wrapper><table><thead><tr><th>Method</th><th>설명</th></tr></thead><tbody><tr><td><code>protected Object clone()</code></td><td>해당 객체의 복제본을 생성하여 반환함.</td></tr><tr><td><code>boolean equals(Object obj)</code></td><td>해당 객체와 전달받은 객체가 같은지 여부를 반환함.</td></tr><tr><td><code>protected void finalize()</code></td><td>해당 객체를 더는 아무도 참조하지 않아 가비지 컬렉터가 객체의 리소스를 정리하기 위해 호출함.</td></tr><tr><td><code>Class&lt;T> getClass()</code></td><td>해당 객체의 클래스 타입을 반환함.</td></tr><tr><td><code>int hashCode()</code></td><td>해당 객체의 해시 코드값을 반환함.</td></tr><tr><td><code>void notify()</code></td><td>해당 객체의 대기(wait)하고 있는 하나의 스레드를 다시 실행할 때 호출함.</td></tr><tr><td><code>void notifyAll()</code></td><td>해당 객체의 대기(wait)하고 있는 모든 스레드를 다시 실행할 때 호출함.</td></tr><tr><td><code>String toString()</code></td><td>해당 객체의 정보를 문자열로 반환함.</td></tr><tr><td><code>void wait()</code></td><td>해당 객체의 다른 스레드가 notify()나 notifyAll() 메소드를 실행할 때까지 현재 스레드를 일시적으로 대기(wait)시킬 때 호출함.</td></tr><tr><td><code>void wait(long timeout)</code></td><td>해당 객체의 다른 스레드가 notify()나 notifyAll() 메소드를 실행하거나 전달받은 시간이 지날 때까지 현재 스레드를 일시적으로 대기(wait)시킬 때 호출함.</td></tr><tr><td><code>void wait(long timeout, int nanos)</code></td><td>해당 객체의 다른 스레드가 notify()나 notifyAll() 메소드를 실행하거나 전달받은 시간이 지나거나 다른 스레드가 현재 스레드를 인터럽트 할 때까지 현재 스레드를 일시적으로 대기(wait)시킬 때 호출함.</td></tr></tbody></table></div><br><h2 id=tostring>toString()</h2><p>toString() method는 해당 인스턴스의 정보를 문자열로 반환한다.<br>클래스 이름과 구분자 &lsquo;@&rsquo;, 그 뒤에 16진수 해시 코드가 반환된다.</p><h3 id=tostring의-원형>toString()의 원형</h3><p><code>getClass().getName()</code> + <code>'@'</code> + <code>Integer.toHexString(hashCode())</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>class</span> <span class=nc>TestMethod</span> <span class=o>{...}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>class</span> <span class=nc>Main</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span> <span class=n>args</span><span class=o>[])</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>TestMethod</span> <span class=n>test01</span> <span class=o>=</span> <span class=k>new</span> <span class=n>TestMethod</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        <span class=n>TestMethod</span> <span class=n>test02</span> <span class=o>=</span> <span class=k>new</span> <span class=n>TestMethod</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>test01</span><span class=o>.</span><span class=na>toString</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>test02</span><span class=o>.</span><span class=na>toString</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>TestMethod</span><span class=err>@</span><span class=mi>2</span><span class=n>c7b84de</span>
+</span></span><span class=line><span class=cl><span class=n>TestMethod</span><span class=err>@</span><span class=mf>3f</span><span class=n>ee733d</span>
+</span></span></code></pre></td></tr></table></div></div><br><h3 id=string>String</h3><p>String 객체를 출력하면 String 객체가 저장하고 있는 문자열이 출력된다.<br>jdk의 String 클래스는 toString()을 override하고 있기 때문이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>String</span> <span class=n>test</span> <span class=o>=</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=s>&#34;Test&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>test</span><span class=o>);</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Test</span>
+</span></span></code></pre></td></tr></table></div></div><p>그렇다면 이 toString()을 어떤 경우에 override해서 사용할까?<br>예를 들어 보겠다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Song</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>private</span> <span class=n>String</span> <span class=n>title</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>private</span> <span class=n>String</span> <span class=n>singer</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=nf>Song</span><span class=o>(</span><span class=n>String</span> <span class=n>title</span><span class=o>,</span> <span class=n>String</span> <span class=n>singer</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>title</span> <span class=o>=</span> <span class=n>title</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>singer</span> <span class=o>=</span> <span class=n>singer</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=nd>@Override</span>
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=n>String</span> <span class=nf>toString</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=s>&#34;Song{title=&#39;&#34;</span> <span class=o>+</span> <span class=n>title</span> <span class=o>+</span> <span class=s>&#34;&#39;, singer=&#39;&#34;</span> <span class=o>+</span> <span class=n>singer</span> <span class=o>+</span> <span class=s>&#34;&#39;}&#34;</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>Song</span> <span class=n>song</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Song</span><span class=o>(</span><span class=s>&#34;노래 제목&#34;</span><span class=o>,</span> <span class=s>&#34;가수&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>song</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Song</span><span class=o>{</span><span class=n>title</span><span class=o>=</span><span class=err>&#39;노래</span> <span class=err>제목&#39;</span><span class=o>,</span> <span class=n>singer</span><span class=o>=</span><span class=err>&#39;가수&#39;</span><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>이렇게 객체의 정보를 문자열 형태로 표현하고자 할 때,<br>공통적으로 출력되어야 하는 형태가 있는 경우,<br>toString()을 override해서 return 값을 바꿔줄 수 있다.</p><br><h2 id=equals>equals()</h2><p>equals() method는 두 객체가 같은 객체인지 비교할 때 사용한다.<br>여기서 <strong>동등성</strong>과 <strong>동일성</strong>에 대해 생각해볼 필요가 있다.</p><p>주로 primitive type의 자료형이 같은 지를 비교할 때 <strong>&rsquo;==&rsquo;</strong> 연산자를 사용하는데, 이는 두 object가 같은 정보를 담고 있는지를 비교한다. 즉, 동등한지를 비교한다.</p><p>그리고 두 객체가 같은 지를 비교할 때는 equals() method를 사용하는데, 이는 두 object가 완전히 같은, 동일한 object인지 비교하는 것이다.</p><p>두 객체가 같은 주소값을 가지는 같은 객체라는 것이 동일하다고 표현된다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>User</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=nf>User</span><span class=o>(</span><span class=kt>int</span> <span class=n>id</span><span class=o>,</span> <span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>id</span> <span class=o>=</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>name</span> <span class=o>=</span> <span class=n>name</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>equals</span><span class=o>(</span><span class=n>Object</span> <span class=n>obj</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=o>(</span><span class=k>this</span> <span class=o>==</span> <span class=n>obj</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>User</span> <span class=n>user1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>User</span><span class=o>(</span><span class=mi>1000</span><span class=o>,</span> <span class=s>&#34;최승은&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=n>User</span> <span class=n>user2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>User</span><span class=o>(</span><span class=mi>1000</span><span class=o>,</span> <span class=s>&#34;최승은&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1>// 두 개의 다른 객체가 같은 값을 가지고 있다.
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>user1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>user2</span><span class=o>));</span> <span class=c1>// 서로 다른 객체이기 때문에 false
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>user1</span> <span class=o>=</span> <span class=n>user2</span><span class=o>;</span> <span class=c1>// 두 변수가 같은 주소를 가리키게 된다.
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>user1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>user2</span><span class=o>));</span> <span class=c1>// 같은 주소값의 같은 객체이기 때문에 true
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kc>false</span>
+</span></span><span class=line><span class=cl><span class=kc>true</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=equals-기본-형태>equals() 기본 형태</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>equals</span><span class=o>(</span><span class=n>Object</span> <span class=n>obj</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=o>(</span><span class=k>this</span> <span class=o>==</span> <span class=n>obj</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>equals의 기본 형태는 이렇다. object가 동일한지를 비교하는 것이다.<br>그렇다면 equals()는 어떤 경우에 override해서 사용할까?<br>예를 들어 보겠다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>User</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=nf>User</span><span class=o>(</span><span class=kt>int</span> <span class=n>id</span><span class=o>,</span> <span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>id</span> <span class=o>=</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>name</span> <span class=o>=</span> <span class=n>name</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>getId</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=nd>@Override</span>
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>equals</span><span class=o>(</span><span class=n>Object</span> <span class=n>obj</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>(</span><span class=n>obj</span> <span class=k>instanceof</span> <span class=n>User</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>getId</span><span class=o>()</span> <span class=o>==</span> <span class=o>((</span><span class=n>User</span><span class=o>)</span><span class=n>obj</span><span class=o>).</span><span class=na>getId</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>User</span> <span class=n>user1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>User</span><span class=o>(</span><span class=mi>1000</span><span class=o>,</span> <span class=s>&#34;최승은&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=n>User</span> <span class=n>user2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>User</span><span class=o>(</span><span class=mi>1000</span><span class=o>,</span> <span class=s>&#34;최승은&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>user1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>user2</span><span class=o>));</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kc>true</span>
+</span></span></code></pre></td></tr></table></div></div><p>위의 예시처럼 두 객체가 같은 해시코드 값을 갖는지 비교하는 내용으로 override를 하여 사용한다.</p><br><h2 id=hashcode>hashCode()</h2><p>해시코드란 JVM이 인스턴스를 생성할 때 메모리 주소를 변환해서 부여하는 코드이다.<br>실제 메모리 주소값과는 별개이며, 실제 메모리 주소는 System 클래스의 identityHashCode()로 확인할 수 있다.</p><p>자바에서의 동일성은 equals()의 반환값이 true, hashCode() 반환값이 동일함을 의미한다.<br>그래서 일반적으로 equals()와 hashCode()는 함께 override 한다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>User</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=nf>User</span><span class=o>(</span><span class=kt>int</span> <span class=n>id</span><span class=o>,</span> <span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>id</span> <span class=o>=</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>name</span> <span class=o>=</span> <span class=n>name</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>getId</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>id</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=nd>@Override</span>
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>equals</span><span class=o>(</span><span class=n>Object</span> <span class=n>obj</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>(</span><span class=n>obj</span> <span class=k>instanceof</span> <span class=n>User</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>getId</span><span class=o>()</span> <span class=o>==</span> <span class=o>((</span><span class=n>User</span><span class=o>)</span><span class=n>obj</span><span class=o>).</span><span class=na>getId</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=nd>@Override</span>
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>hashCode</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>getId</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>User</span> <span class=n>user1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>User</span><span class=o>(</span><span class=mi>1000</span><span class=o>,</span> <span class=s>&#34;최승은&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=n>User</span> <span class=n>user2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>User</span><span class=o>(</span><span class=mi>1000</span><span class=o>,</span> <span class=s>&#34;최승은&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;user1.equals(user2): &#34;</span> <span class=o>+</span> <span class=n>user1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>user2</span><span class=o>));</span>
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;user1.hashCode(): &#34;</span> <span class=o>+</span> <span class=n>user1</span><span class=o>.</span><span class=na>hashCode</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;user2.hashCode(): &#34;</span> <span class=o>+</span> <span class=n>user2</span><span class=o>.</span><span class=na>hashCode</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;System.identityHashCode(user1): &#34;</span> <span class=o>+</span> <span class=n>System</span><span class=o>.</span><span class=na>identityHashCode</span><span class=o>(</span><span class=n>user1</span><span class=o>));</span>
+</span></span><span class=line><span class=cl>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;System.identityHashCode(user2): &#34;</span> <span class=o>+</span> <span class=n>System</span><span class=o>.</span><span class=na>identityHashCode</span><span class=o>(</span><span class=n>user2</span><span class=o>));</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>user1</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>user2</span><span class=o>):</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=n>user1</span><span class=o>.</span><span class=na>hashCode</span><span class=o>():</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl><span class=n>user2</span><span class=o>.</span><span class=na>hashCode</span><span class=o>():</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>identityHashCode</span><span class=o>(</span><span class=n>user1</span><span class=o>):</span> <span class=mi>1804094807</span>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>identityHashCode</span><span class=o>(</span><span class=n>user2</span><span class=o>):</span> <span class=mi>951007336</span>
+</span></span></code></pre></td></tr></table></div></div><p>위의 예시는 id를 해시코드 값으로 반환하여 출력하게 된다.<br>이렇게 두 개의 서로 다른 메모리에 위치한 객체가 동일성을 갖기 위해 override를 하게 된다.</p><h3 id=wrapper-class>Wrapper class</h3><p>Integer 클래스도 Object 클래스의 hashCode()를 override하고 있다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Integer</span> <span class=n>a</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Integer</span><span class=o>(</span><span class=mi>1</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>Integer</span> <span class=n>b</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Integer</span><span class=o>(</span><span class=mi>1</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>a</span> <span class=o>==</span> <span class=n>b</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>a</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>b</span><span class=o>));</span>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;a.hashCode(): &#34;</span> <span class=o>+</span> <span class=n>a</span><span class=o>.</span><span class=na>hashCode</span><span class=o>());</span>
+</span></span><span class=line><span class=cl><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;b.hashCode(): &#34;</span> <span class=o>+</span> <span class=n>b</span><span class=o>.</span><span class=na>hashCode</span><span class=o>());</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>실행 결과</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kc>false</span>
+</span></span><span class=line><span class=cl><span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=n>a</span><span class=o>.</span><span class=na>hashCode</span><span class=o>():</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=n>b</span><span class=o>.</span><span class=na>hashCode</span><span class=o>():</span> <span class=mi>1</span>
+</span></span></code></pre></td></tr></table></div></div><p>위 코드를 보면 a 객체와 b 객체는 같은 값을 갖지만 따로 생성된 다른 객체이다. 따라서 &lsquo;==&rsquo; 연산자를 사용하여 비교하면 false가 나온다.</p><p>하지만 equals() 메소드를 사용하여 비교하면 true가 나온다. 그 이유는 같은 hashcode 주소값을 갖기 때문이다.</p><p>java.lang에 있는 integer 클래스를 보면 hashCode() 메소드가 override 되어있는것을 확인할 수 있다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=nd>@Override</span>
+</span></span><span class=line><span class=cl><span class=kd>public</span> <span class=kt>int</span> <span class=nf>hashCode</span><span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>Integer</span><span class=o>.</span><span class=na>hashCode</span><span class=o>(</span><span class=n>value</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><br><h2 id=clone>clone()</h2><p>clone() method는 객체를 복제할 때 사용하며, private 필드도 복제할 수 있기 때문에 정보은닉에 위배될 수 있다.</p><p>따라서 인터페이스가 명시돼있는 클래스만 clone()을 통해 객체를 복제할 수 있다.</p><br><h2 id=finalize>finalize()</h2><p>finalize() method는 직접 호출하는 메소드가 아니라 객체가 힙 메모리에서 해제될 때 가비지콜렉터가 호출하는 메소드이다.</p><p>이 메소드가 override 되어있으면 가비지콜렉터가 이 메소드를 호출하여 실행한다.<br>즉, finalize()에는 객체가 해제될 때 리소스 해제, 소켓 close 등의 필요한 것들을 구현해주면 된다.</p><br><hr><h2 id=references>References</h2><p><a href=https://docs.oracle.com/javase/8/docs/api/ target=_blank rel="noopener noreferrer">오라클 api 공식 문서</a><br><a href=http://tcpschool.com/java/java_api_object target=_blank rel="noopener noreferrer">Object 클래스</a><br><a href=https://atoz-develop.tistory.com/entry/%EC%9E%90%EB%B0%94-Object-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A0%95%EB%A6%AC-toString-equals-hashCode-clone>자바 Object 클래스 정리 - toString(), equals(), hashCode(), clone()</a></p></section><footer class=article-footer></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})</script></article><script src=https://utteranc.es/client.js repo=cse0518/cse0518.github.io issue-term=pathname crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>let utterancesLoaded=!1;function setUtterancesTheme(e){let t=document.querySelector(".utterances iframe");t&&t.contentWindow.postMessage({type:"set-theme",theme:`github-${e}`},"https://utteranc.es")}addEventListener("message",e=>{if(e.origin!=="https://utteranc.es")return;utterancesLoaded=!0,setUtterancesTheme(document.documentElement.dataset.scheme)}),window.addEventListener("onColorSchemeChange",e=>{if(!utterancesLoaded)return;setUtterancesTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+2021 -
+2023 최승은 (Choi SeungEun)</section><section class=powerby>Choi SeungEun Tech Blog<br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.16.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
