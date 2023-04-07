@@ -1,20 +1,76 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on 최승은 (Choi SeungEun)</title><link>/page/</link><description>Recent content in Pages on 최승은 (Choi SeungEun)</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0900</lastBuildDate><atom:link href="/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>/about/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0900</pubDate><guid>/about/</guid><description>&lt;p>Written in Go, Hugo is an open source static site generator available under the &lt;a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE" target="_blank" rel="noopener"
->Apache Licence 2.0.&lt;/a> Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p>
-&lt;p>Hugo makes use of a variety of open source projects including:&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on 최승은 (Choi SeungEun)</title><link>/page/</link><description>Recent content in Pages on 최승은 (Choi SeungEun)</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 07 Apr 2023 00:00:00 +0900</lastBuildDate><atom:link href="/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About Me</title><link>/about-me/</link><pubDate>Fri, 07 Apr 2023 00:00:00 +0900</pubDate><guid>/about-me/</guid><description>&lt;h2 id="-introduction">🙋‍♂️ Introduction&lt;/h2>
+&lt;blockquote>
+&lt;p>백엔드 개발자 최승은입니다.&lt;br>
+항상 문제를 정확히 파악하고 해결하려고 노력하며, 서비스를 지속적으로 발전시키는 것을 좋아합니다.&lt;br>
+대규모 트래픽을 감당할 수 있는 안정적인 서버를 제공해내기 위해 성장중입니다.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="contact--channel">Contact &amp;amp; Channel&lt;/h2>
+&lt;blockquote>
+&lt;p>📩 Email : &lt;a class="link" href="mailto:csedev0518@gmail.com" >csedev0518@gmail.com&lt;/a>&lt;br>
+👨‍💻 Github : &lt;a class="link" href="https://github.com/cse0518" target="_blank" rel="noopener"
+>https://github.com/cse0518&lt;/a>&lt;br>
+🔗 Resume : &lt;a class="link" href="https://career.programmers.co.kr/pr/cse0518" target="_blank" rel="noopener"
+>Programmers Resume Link&lt;/a>&lt;br>
+🔗 Portfolio : &lt;a class="link" href="https://cse0518.notion.site/SeungEun-Choi-fd3cb8a04edc4c11b0c8607e1c78b296" target="_blank" rel="noopener"
+>Notion Link&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="-skills">🛠 Skills&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong style="font-size:21px">Back-end&lt;/strong>&lt;/p>
 &lt;ul>
-&lt;li>&lt;a class="link" href="https://github.com/yuin/goldmark" target="_blank" rel="noopener"
->https://github.com/yuin/goldmark&lt;/a>&lt;/li>
-&lt;li>&lt;a class="link" href="https://github.com/alecthomas/chroma" target="_blank" rel="noopener"
->https://github.com/alecthomas/chroma&lt;/a>&lt;/li>
-&lt;li>&lt;a class="link" href="https://github.com/muesli/smartcrop" target="_blank" rel="noopener"
->https://github.com/muesli/smartcrop&lt;/a>&lt;/li>
-&lt;li>&lt;a class="link" href="https://github.com/spf13/cobra" target="_blank" rel="noopener"
->https://github.com/spf13/cobra&lt;/a>&lt;/li>
-&lt;li>&lt;a class="link" href="https://github.com/spf13/viper" target="_blank" rel="noopener"
->https://github.com/spf13/viper&lt;/a>&lt;/li>
+&lt;li>Java 8, 11, 17&lt;/li>
+&lt;li>Spring Boot, Spring Data JPA, Spring Rest Docs&lt;/li>
+&lt;li>MySQL, MariaDB&lt;/li>
+&lt;li>AWS EC2, S3&lt;/li>
+&lt;li>Github Actions, Jenkins&lt;/li>
 &lt;/ul>
-&lt;p>Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.&lt;/p>
-&lt;p>Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p>
-&lt;p>Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p>
-&lt;p>Learn more and contribute on &lt;a class="link" href="https://github.com/gohugoio" target="_blank" rel="noopener"
->GitHub&lt;/a>.&lt;/p></description></item><item><title>Archives</title><link>/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/archives/</guid><description/></item><item><title>Search</title><link>/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/search/</guid><description/></item></channel></rss>
+&lt;p>&lt;strong style="font-size:21px">Etc.&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Git / Github&lt;/li>
+&lt;li>IntelliJ, VS Code, Slack, Gather, Notion&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="-work-experience--education">💼 Work Experience &amp;amp; Education&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong style="font-size:17.5px">(주)휴머스온 인턴&lt;/strong>&lt;br>
+2023. 03 ~&lt;br>
+Java + Spring 백엔드 개발&lt;/p>
+&lt;p>&lt;strong style="font-size:17.5px">프로그래머스 데브 코스 1기 : 클라우드 기반 백엔드 엔지니어링&lt;/strong>&lt;br>
+2021. 07 ~ 2021. 12&lt;br>
+Java + Spring 백엔드 개발 교육&lt;/p>
+&lt;p>&lt;strong style="font-size:17.5px">(주)넥스트코어테크놀로지 인턴&lt;/strong>&lt;br>
+2021. 04 ~ 2021. 06&lt;br>
+Node.js + React.js 솔루션 개발&lt;/p>
+&lt;p>&lt;strong style="font-size:17.5px">을지대학교 의료IT학과 학사 졸업&lt;/strong>&lt;br>
+2016. 03 ~ 2022. 02&lt;br>
+4.02 / 4.5 학점&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="-project">👨‍💻 Project&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong style="font-size:25px">🌊 Surf&lt;/strong>&lt;br>
+– 2021. 11 ~ 2022. 05&lt;br>
+– &lt;a class="link" href="https://github.com/prgrms-web-devcourse/Team_Ahpuh_Surf_BE" target="_blank" rel="noopener"
+>Github&lt;/a> / &lt;a class="link" href="https://www.notion.so/Surf-a0d750a8a1bc47c18aa9a1bd05a54cb2" target="_blank" rel="noopener"
+>포트폴리오&lt;/a>&lt;br>
+– FE 3명 / BE 4명&lt;/p>
+&lt;p>[기술 스택]&lt;br>
+– Java 17 / Spring Boot 2.6.1 / Spring Data JPA / MySQL 8.0&lt;/p>
+&lt;p>[프로젝트 소개]&lt;br>
+– 내가 얼마나 발전했는지 매일 기록하고 공유하는 서비스&lt;/p>
+&lt;p>[역할]&lt;br>
+– &lt;a class="link" href="https://github.com/prgrms-web-devcourse/Team_Ahpuh_Surf_BE/pull/206" target="_blank" rel="noopener"
+>조회 성능 문제를 해결하기 위해 인덱스 적용&lt;/a>&lt;br>
+– 코드 개선과 검증을 위한 리팩토링 및 단위테스트&lt;br>
+– batch size 설정으로 JPA N+1 문제 해결&lt;br>
+– 데이터 누락이 없고 인덱스 적용이 가능하도록&lt;br>
+– No-Offset 커서 기반 페이지네이션 적용&lt;br>
+– 안전한 HTTP 통신을 위해 HTTPS 적용&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="-awards--certificate">🏆 Awards &amp;amp; Certificate&lt;/h2>
+&lt;blockquote>
+&lt;ul>
+&lt;li>정보처리기사 / 2022.11.25&lt;/li>
+&lt;li>2020년도 고령친화산업 해커톤 공모전 우수상 / 2020.11.27&lt;/li>
+&lt;li>2020학년도 의료IT학과 종합학술대회 장려상 / 2020.11.26&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Archives</title><link>/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/archives/</guid><description/></item><item><title>Search</title><link>/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/search/</guid><description/></item></channel></rss>
