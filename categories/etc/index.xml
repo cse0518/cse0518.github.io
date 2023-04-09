@@ -20,7 +20,7 @@
 &lt;li>Github.io 블로그에 Hugo 테마를 적용하는 상황에 맞춰진 게시글입니다.&lt;/li>
 &lt;li>더 자세한 내용이 필요하시면 &lt;a class="link" href="https://stack.jimmycai.com/guide/getting-started" target="_blank" rel="noopener"
 >공식 문서&lt;/a>를 참고해주세요.&lt;/li>
-&lt;li>다음 포스팅에서는 Github.io Repository를 submodule로 두지 않고 Github Actions를 이용하여 배포하는 방법을 알려드립니다.&lt;/li>
+&lt;li>다음 포스팅에서는 Github.io Repository를 submodule로 두지 않고 &lt;code>Github Actions&lt;/code>를 이용하여 배포하는 방법을 알려드립니다.&lt;/li>
 &lt;/ul>
 &lt;/blockquote>
 &lt;br/>
@@ -117,7 +117,7 @@ repository 이름은 마음대로 설정해주시면 됩니다. 저는 &lt;code>
 → &lt;code>git remote add origin {repository_URL}&lt;/code> 명령어로 원격 저장소를 연동합니다.&lt;br>
 아까 생성한 blog repository의 URL 주소를 넣으시면 됩니다!&lt;/p>
 &lt;img src="./images/git-remote.png" alt="git-remote" width="700px">
-혹시 안된다면 clone 해오셔도 됩니다.
+&lt;figcaption>혹시 안된다면 clone 해오셔도 됩니다.&lt;/figcaption>
 &lt;p>그럼 repository 연동이 완료되었고, 이제 테마를 적용해보겠습니다!&lt;/p>
 &lt;br/>
 &lt;h3 id="hugo-테마-세팅">hugo 테마 세팅&lt;/h3>
@@ -158,8 +158,8 @@ repository 이름은 마음대로 설정해주시면 됩니다. 저는 &lt;code>
 이제 설정을 커스터마이징하고, 포스트를 작성하시면 됩니다.&lt;/p>
 &lt;p>일단 &lt;code>themes/{테마_이름}&lt;/code> 폴더에 있는 &lt;code>exampleSite&lt;/code>를 적용하시고 감 잡으시는 것을 추천드립니다!&lt;/p>
 &lt;p>exampleSite의 content 폴더 내부 파일들을&lt;br>
-blog 폴더의 content 폴더로 그대로 옮기시고,&lt;br>
-exampleSite의 설정 파일(config.yaml)을 blog 폴더로 옮기시면 됩니다.&lt;br>
+blog 폴더의 content 폴더로 그대로 복사하시고,&lt;br>
+exampleSite의 설정 파일(config.yaml)을 blog 폴더로 복사하시면 됩니다.&lt;br>
 그리고 blog 폴더의 toml 파일은 삭제하면 yaml 파일로 적용이 됩니다.&lt;/p>
 &lt;img src="./images/example-site-on.png" alt="example-site" width="1000px">
 &lt;figcaption>적용된 모습!&lt;/figcaption>
