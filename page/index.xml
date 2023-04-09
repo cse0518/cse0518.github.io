@@ -4,13 +4,13 @@
 항상 문제를 정확히 파악하고 해결하려고 노력하며, 서비스를 지속적으로 발전시키는 것을 좋아합니다.&lt;br>
 대규모 트래픽을 감당할 수 있는 안정적인 서버를 제공해내기 위해 성장중입니다.&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="contact--channel">Contact &amp;amp; Channel&lt;/h2>
+&lt;h2 id="-contact--channel">🔗 Contact &amp;amp; Channel&lt;/h2>
 &lt;blockquote>
 &lt;p>📩 Email : &lt;a class="link" href="mailto:csedev0518@gmail.com" >csedev0518@gmail.com&lt;/a>&lt;br>
 👨‍💻 Github : &lt;a class="link" href="https://github.com/cse0518" target="_blank" rel="noopener"
 >https://github.com/cse0518&lt;/a>&lt;br>
 🔗 Resume : &lt;a class="link" href="https://career.programmers.co.kr/pr/cse0518" target="_blank" rel="noopener"
->Programmers Resume Link&lt;/a>&lt;br>
+>Programmers Resume&lt;/a>&lt;br>
 🔗 Portfolio : &lt;a class="link" href="https://cse0518.notion.site/SeungEun-Choi-fd3cb8a04edc4c11b0c8607e1c78b296" target="_blank" rel="noopener"
 >Notion Link&lt;/a>&lt;/p>
 &lt;/blockquote>
@@ -32,39 +32,61 @@
 &lt;/blockquote>
 &lt;h2 id="-work-experience--education">💼 Work Experience &amp;amp; Education&lt;/h2>
 &lt;blockquote>
+&lt;ul>
+&lt;li>
 &lt;p>&lt;strong style="font-size:17.5px">(주)휴머스온 인턴&lt;/strong>&lt;br>
 2023. 03 ~&lt;br>
 Java + Spring 백엔드 개발&lt;/p>
-&lt;p>&lt;strong style="font-size:17.5px">프로그래머스 데브 코스 1기 : 클라우드 기반 백엔드 엔지니어링&lt;/strong>&lt;br>
-2021. 07 ~ 2021. 12&lt;br>
-Java + Spring 백엔드 개발 교육&lt;/p>
-&lt;p>&lt;strong style="font-size:17.5px">(주)넥스트코어테크놀로지 인턴&lt;/strong>&lt;br>
-2021. 04 ~ 2021. 06&lt;br>
-Node.js + React.js 솔루션 개발&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>&lt;strong style="font-size:17.5px">을지대학교 의료IT학과 학사 졸업&lt;/strong>&lt;br>
 2016. 03 ~ 2022. 02&lt;br>
 4.02 / 4.5 학점&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong style="font-size:17.5px">프로그래머스 데브 코스 1기 : 클라우드 기반 백엔드 엔지니어링&lt;/strong>&lt;br>
+2021. 07 ~ 2021. 12&lt;br>
+Java + Spring 백엔드 개발 교육&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong style="font-size:17.5px">(주)넥스트코어테크놀로지 인턴&lt;/strong>&lt;br>
+2021. 04 ~ 2021. 06&lt;br>
+Node.js + React.js 솔루션 개발&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;/blockquote>
 &lt;h2 id="-project">👨‍💻 Project&lt;/h2>
 &lt;blockquote>
-&lt;p>&lt;strong style="font-size:25px">🌊 Surf&lt;/strong>&lt;br>
-– 2021. 11 ~ 2022. 05&lt;br>
-– &lt;a class="link" href="https://github.com/prgrms-web-devcourse/Team_Ahpuh_Surf_BE" target="_blank" rel="noopener"
->Github&lt;/a> / &lt;a class="link" href="https://www.notion.so/Surf-a0d750a8a1bc47c18aa9a1bd05a54cb2" target="_blank" rel="noopener"
->포트폴리오&lt;/a>&lt;br>
-– FE 3명 / BE 4명&lt;/p>
-&lt;p>[기술 스택]&lt;br>
-– Java 17 / Spring Boot 2.6.1 / Spring Data JPA / MySQL 8.0&lt;/p>
-&lt;p>[프로젝트 소개]&lt;br>
-– 내가 얼마나 발전했는지 매일 기록하고 공유하는 서비스&lt;/p>
-&lt;p>[역할]&lt;br>
-– &lt;a class="link" href="https://github.com/prgrms-web-devcourse/Team_Ahpuh_Surf_BE/pull/206" target="_blank" rel="noopener"
->조회 성능 문제를 해결하기 위해 인덱스 적용&lt;/a>&lt;br>
-– 코드 개선과 검증을 위한 리팩토링 및 단위테스트&lt;br>
-– batch size 설정으로 JPA N+1 문제 해결&lt;br>
-– 데이터 누락이 없고 인덱스 적용이 가능하도록&lt;br>
-– No-Offset 커서 기반 페이지네이션 적용&lt;br>
-– 안전한 HTTP 통신을 위해 HTTPS 적용&lt;/p>
+&lt;p>&lt;strong style="font-size:24px">🌊 Surf&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;ol start="2021">
+&lt;li>11 ~ 2022. 05&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>FE 3명 / BE 4명&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/prgrms-web-devcourse/Team_Ahpuh_Surf_BE" target="_blank" rel="noopener"
+>Github&lt;/a> / &lt;a class="link" href="https://cse0518.notion.site/Surf-a0d750a8a1bc47c18aa9a1bd05a54cb2" target="_blank" rel="noopener"
+>포트폴리오&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>기술 스택&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Java 17 / Spring Boot 2.6.1 / Spring Data JPA / MySQL 8.0&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>프로젝트 소개&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>내가 얼마나 발전했는지 매일 기록하고 공유하는 서비스&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>담당 역할&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/prgrms-web-devcourse/Team_Ahpuh_Surf_BE/pull/206" target="_blank" rel="noopener"
+>조회 성능 문제를 해결하기 위해 인덱스 적용&lt;/a>&lt;/li>
+&lt;li>코드 개선과 검증을 위한 리팩토링 및 단위테스트&lt;/li>
+&lt;li>JPA batch-fetch-size 설정으로 JPA N+1 문제 해결&lt;/li>
+&lt;li>데이터 누락이 없고 인덱스 적용이 가능하도록&lt;/li>
+&lt;li>No-Offset 커서 기반 페이지네이션 적용&lt;/li>
+&lt;li>안전한 HTTP 통신을 위해 HTTPS 적용&lt;/li>
+&lt;/ul>
 &lt;/blockquote>
 &lt;h2 id="-awards--certificate">🏆 Awards &amp;amp; Certificate&lt;/h2>
 &lt;blockquote>
