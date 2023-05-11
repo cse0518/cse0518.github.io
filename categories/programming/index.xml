@@ -1,4 +1,413 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on 최승은 (Choi SeungEun)</title><link>/categories/programming/</link><description>Recent content in Programming on 최승은 (Choi SeungEun)</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 07 Aug 2021 12:30:00 +0900</lastBuildDate><atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>23가지 디자인 패턴</title><link>/p/23%EA%B0%80%EC%A7%80-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/</link><pubDate>Sat, 07 Aug 2021 12:30:00 +0900</pubDate><guid>/p/23%EA%B0%80%EC%A7%80-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/</guid><description>&lt;h2 id="디자인-패턴이란">디자인 패턴이란?&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on 최승은 (Choi SeungEun)</title><link>/categories/programming/</link><description>Recent content in Programming on 최승은 (Choi SeungEun)</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 09 May 2023 21:00:00 +0900</lastBuildDate><atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>CMAK cluster 생성시 주키퍼 오류(KeeperErrorCode) 해결하기</title><link>/p/cmak-keeper-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0/</link><pubDate>Tue, 09 May 2023 21:00:00 +0900</pubDate><guid>/p/cmak-keeper-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
+&lt;p>Kafka 모니터링을 하기 위해 CMAK 환경을 세팅하는중에&lt;br>
+&lt;code>KeeperErrorCode = Unimplemented for /kafka-manager/mutex&lt;/code> 에러가 발생했다.&lt;/p>
+&lt;p>이 에러를 해결한 과정을 적어본다.&lt;/p>
+&lt;blockquote>
+&lt;h3 id="개발-환경">개발 환경&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>docker-compose를 통해 zookeeper, kafka, cmak을 로컬 환경에서 실행시켰다.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;3&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">zookeeper&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;zookeeper&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;wurstmeister/zookeeper&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s1">&amp;#39;2181:2181&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">ZOOKEEPER_CLIENT_PORT=2181&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">ALLOW_ANONYMOUS_LOGIN=yes&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">test&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">if netstat -ltn | grep -c &amp;#34;2181&amp;#34;; then echo 0; else echo 1; fi&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">interval&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">10s&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">timeout&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">5s&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">retries&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">kafka&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;kafka&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;wurstmeister/kafka&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s1">&amp;#39;9092:9092&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">KAFKA_ADVERTISED_HOST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">kafka&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">KAFKA_ZOOKEEPER_CONNECT&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">zookeeper:2181&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">depends_on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">zookeeper&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">condition&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">service_healthy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">healthcheck&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">test&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">if netstat -ltn | grep -c &amp;#34;9092&amp;#34;; then echo 0; else echo 1; fi&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">interval&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">10s&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">timeout&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">5s&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">retries&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">kafka-manager-cmak&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;kafka-manager-cmak&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;hlebalbau/kafka-manager&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">restart&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">on&lt;/span>-&lt;span class="l">failure&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;9000:9000&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ZK_HOSTS&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">zookeeper:2181&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">APPLICATION_SECRET&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;random-secret&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">KM_ARGS&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>-&lt;span class="l">Djava.net.preferIPv4Stack=true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">depends_on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">kafka&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">condition&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">service_healthy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;br/>
+&lt;h2 id="cmak-에러-keepererrorcode--unimplemented-for-kafka-managermutex">CMAK 에러 &amp;ldquo;KeeperErrorCode = Unimplemented for /kafka-manager/mutex&amp;rdquo;&lt;/h2>
+&lt;img src="https://user-images.githubusercontent.com/60170616/236714108-d66052a5-c24a-4c77-9602-34c95365dd2d.png" width="500px"/>
+&lt;p>이 에러는 CMAK에서 add cluster시에 필요한 zookeeper의 &lt;code>znode&lt;/code>가 없어서 발생했다.&lt;/p>
+&lt;p>&lt;code>znode&lt;/code>는 Zookeeper에서 데이터를 저장하고 관리하기 위한 추상적인 노드이고,&lt;br>
+&lt;code>znode&lt;/code>를 생성해주면 이 에러는 해결된다.&lt;/p>
+&lt;p>이 에러를 찾아보면서 자세히 알아보았는데,&lt;br>
+최신 CMAK은 Apache Curator 2.12.0을 사용하기 때문에&lt;br>
+기본적으로 3.5.x 버전의 zookeeper를 지원하고&lt;br>
+build에 수정 사항이 있는 3.4.x 버전만 지원한다고 한다.&lt;/p>
+&lt;p>내가 사용한 zookeeper의 버전은 3.4.13 버전이었고,&lt;br>
+직접 수정 해줘야하는 부분이 있었던 것이다.&lt;/p>
+&lt;br/>
+&lt;h2 id="znode-생성하기">znode 생성하기&lt;/h2>
+&lt;p>생성해줘야 하는 znode는&lt;br>
+&lt;code>/kafka-manager/mutex&lt;/code>&lt;br>
+&lt;code>/kafka-manager/mutex/locks&lt;/code>&lt;br>
+&lt;code>/kafka-manager/mutex/leases&lt;/code>&lt;br>
+총 3개이다.&lt;/p>
+&lt;p>&lt;code>/kafka-manager&lt;/code>는 cmak 컨테이너를 실행시키면 생성되기 때문에&lt;br>
+zookeeper, kafka, cmak 컨테이너를 전부 실행시키고 진행한다.&lt;/p>
+&lt;br/>
+&lt;h3 id="zkclish-실행">zkCli.sh 실행&lt;/h3>
+&lt;p>Zookeeper의 &lt;code>zkCli.sh&lt;/code>을 실행하여 Zookeeper 서버에 연결하고,&lt;br>
+Zookeeper 클러스터의 구성요소를 관리할 수 있다.&lt;/p>
+&lt;p>도커 데스크탑을 사용하는 경우,&lt;br>
+Zookeeper 컨테이너의 터미널 창에서 &lt;code>./bin/zkCli.sh&lt;/code> 명령어를 입력하여 접속하고,&lt;/p>
+&lt;p>직접 명령어로 컨테이너에 접근하고 싶다면,&lt;br>
+&lt;code>docker-compose exec -t zookeeper bash&lt;/code> 명령어를 입력하여&lt;br>
+&amp;lsquo;zookeeper&amp;rsquo; 컨테이너에서 bash shell 환경을 열 수 있다.&lt;br>
+그리고 &lt;code>./bin/zkCli.sh&lt;/code> 명령어를 입력하여 Zookeeper 서버에 연결한다.&lt;/p>
+&lt;p>아래와 같은 로그가 출력된다. (&amp;hellip;은 생략)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ./bin/zkCli.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connecting to localhost:2181
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Welcome to ZooKeeper!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WATCHER::
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WatchedEvent state:SyncConnected type:None path:null
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;br/>
+&lt;h3 id="znode-생성">znode 생성&lt;/h3>
+&lt;p>&lt;code>zkCli.sh&lt;/code>를 실행했다면 이제 세 가지의 znode를 생성한다.&lt;br>
+&lt;code>create /kafka-manager/mutex &amp;quot;&amp;quot;&lt;/code>&lt;br>
+&lt;code>create /kafka-manager/mutex/locks &amp;quot;&amp;quot;&lt;/code>&lt;br>
+&lt;code>create /kafka-manager/mutex/leases &amp;quot;&amp;quot;&lt;/code>&lt;/p>
+&lt;img src="https://github.com/cse0518/MSA_Spring-Eureka/assets/60170616/059eb0c3-5a36-41c6-b7f5-e6b5095b1ed7" width="500px"/>
+&lt;p>잘 생성된 것을 확인할 수 있다. (&lt;code>Created&lt;/code>)&lt;/p>
+&lt;img src="https://user-images.githubusercontent.com/60170616/236774500-dcaa9687-0de9-459b-99cf-912f773249ac.png" width="350px"/>
+&lt;p>이제 Add Cluster가 성공적으로 이뤄진다!&lt;/p>
+&lt;br/>
+&lt;h3 id="스크립트-작성">스크립트 작성&lt;/h3>
+&lt;p>매번 컨테이너를 시작할 때마다&lt;br>
+수작업으로 znode를 생성하는 것은 비효율적이기 때문에&lt;br>
+자동화할 수 있는 스크립트를 간단히 작성했다.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#! /bin/sh
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;# Add Zookeeper&amp;#39;s ZNodes&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose &lt;span class="nb">exec&lt;/span> -t zookeeper bash &lt;span class="s">&amp;lt;&amp;lt;EOF
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> ./bin/zkCli.sh
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> create /kafka-manager/mutex &amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> create /kafka-manager/mutex/locks &amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> create /kafka-manager/mutex/leases &amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> quit
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">exit
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>docker-compose exec&lt;/code> 명령어를 sh 파일에서 실행하면&lt;br>
+일반적으로 동작하지 않는다.&lt;/p>
+&lt;p>&lt;code>docker-compose exec&lt;/code>는 명령어를 특정 컨테이너에서 실행하기 위해 사용하는 커맨드이며,&lt;br>
+이 명령어는 &lt;code>docker-compose.yml&lt;/code> 파일에 정의된 컨테이너들만 접근할 수 있다.&lt;/p>
+&lt;p>따라서, &lt;code>docker-compose exec&lt;/code> 명령어를 실행하려면&lt;br>
+일반적으로 터미널에서 수동으로 입력해야 하고,&lt;br>
+스크립트에서 자동으로 &lt;code>docker-compose exec&lt;/code> 명령어를 실행하고 싶다면,&lt;br>
+위와 같이 &lt;code>EOF&lt;/code>를 명시해줘야 한다.&lt;/p>
+&lt;p>위 스크립트에서 &amp;lsquo;quit&amp;rsquo;는 &lt;code>zkCli.sh&lt;/code>를 종료하는 명령어이고,&lt;br>
+&amp;rsquo;exit&amp;rsquo;는 &lt;code>docker-compose exec&lt;/code> 명령어로 실행한&lt;br>
+zookeeper 컨테이너의 bash shell을 종료하는 명령어이다.&lt;/p>
+&lt;p>이제 스크립트를 실행하면 znode 세팅을 빠르게 끝낼 수 있다!&lt;/p>
+&lt;br/>
+&lt;h2 id="references">References&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/cse0518/MSA_Spring-Eureka/issues/1" target="_blank" rel="noopener"
+>내가 작성한 이슈&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/yahoo/CMAK/issues/748#issuecomment-598734547" target="_blank" rel="noopener"
+>https://github.com/yahoo/CMAK/issues/748#issuecomment-598734547&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://lightrun.com/answers/yahoo-cmak-failed-to-add-cluster-on-3001" target="_blank" rel="noopener"
+>https://lightrun.com/answers/yahoo-cmak-failed-to-add-cluster-on-3001&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>AWS 서비스 파악하기</title><link>/p/aws-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0/</link><pubDate>Mon, 17 Apr 2023 22:00:00 +0900</pubDate><guid>/p/aws-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
+&lt;p>AWS의 다양한 리소스를 파악해보고자&lt;br>
+&lt;code>업무에 바로 쓰는 AWS 입문&lt;/code> 책을 읽기 시작했다.&lt;br>
+그 내용을 하나씩 정리해보고자 한다.&lt;/p>
+&lt;br/>
+&lt;h2 id="iam-identity-and-access-management">IAM (Identity and Access Management)&lt;/h2>
+&lt;p>IAM은 &lt;strong>어떤 리소스나 서비스에 대한 접근 권한 및 레벨 관리 기능&lt;/strong>을 제공한다.&lt;/p>
+&lt;p>root 유저는 모든 리소스를 제약없이 사용할 수 있고, 새로운 유저를 만들 수 있다.&lt;br>
+유저는 access key와 secret key를 가지고 있다.&lt;br>
+유저를 생성할 때 access key와 secret key를 확인할 수 있고,&lt;br>
+secret key는 나중에 다시 확인할 수 없다고 한다.&lt;br>
+따로 보관하고 유출되지 않도록 주의한다.&lt;/p>
+&lt;p>쉽게 말해서&lt;br>
+access key는 아이디, secret key는 비밀번호로 생각하면 된다.&lt;/p>
+&lt;br/>
+&lt;h3 id="관리-요소">관리 요소&lt;/h3>
+&lt;p>IAM은 유저, 그룹, 역할, 정책을 관리한다.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>유저&lt;/code>
+&lt;ul>
+&lt;li>유저는 access key와 secret key를 가지고 AWS 리소스를 사용할 수 있다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>그룹&lt;/code>
+&lt;ul>
+&lt;li>그룹은 하나 or 여러 유저를 포함할 수 있다.&lt;/li>
+&lt;li>그룹 전체에 접근 권한을 설정할 수 있다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>정책(Policy)&lt;/code>
+&lt;ul>
+&lt;li>정책을 생성하여 최소 권한 정책을 펼칠 수 있고, 유저 및 그룹에 적용시킬 수 있다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>역할(Role)&lt;/code>
+&lt;ul>
+&lt;li>역할은 하나 or 다수의 정책을 포함할 수 있다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="계정-타입">계정 타입&lt;/h3>
+&lt;p>유저 생성 시 계정의 타입을 설정한다.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Programmatic Access&lt;/code>
+&lt;ul>
+&lt;li>access key를 발급해서 AWS API를 호출하는 방식으로 사용&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>AWS Management Console Access&lt;/code>
+&lt;ul>
+&lt;li>AWS 웹 콘솔 사용&lt;/li>
+&lt;li>User name, Password를 입력해 로그인&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h2 id="ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)&lt;/h2>
+&lt;p>EC2는 &lt;strong>클라우드 공간에 크기가 유연하게 변경되는 가상 서버 기능&lt;/strong>을 제공한다.&lt;/p>
+&lt;br/>
+&lt;h3 id="비용-지불-방식">비용 지불 방식&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>On-Demand&lt;/code>
+&lt;ul>
+&lt;li>시간당 정해진 금액 지불&lt;/li>
+&lt;li>짧은 시간 동안 인스턴스를 임대하는 방식 (ex. 서버 테스트 등)&lt;/li>
+&lt;li>인스턴스의 크기를 &lt;strong>늘리거나 줄일 수 있음 (O)&lt;/strong>&lt;/li>
+&lt;li>사용한만큼 후불 결제&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Reserved&lt;/code>
+&lt;ul>
+&lt;li>특정 기간만큼 임대&lt;/li>
+&lt;li>인스턴스의 크기를 &lt;strong>늘리거나 줄일 수 없음 (X)&lt;/strong>&lt;/li>
+&lt;li>선불 결제, &lt;strong>저렴한 가격&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Spot&lt;/code>
+&lt;ul>
+&lt;li>인스턴스 가격을 입찰하여 구매하는 방식&lt;/li>
+&lt;li>시장 경제에 따라 인스턴스 비용이 변화함.&lt;br>
+입찰가에 내놓은 금액(최소, 최대)과 맞으면 인스턴스 실행, 그렇지 않으면 꺼진다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="ebs-elastic-block-store">EBS (Elastic Block Store)&lt;/h3>
+&lt;p>파일 및 오브젝트를 보관할 수 있는 스토리지 볼륨(파일 시스템)을 만들어준다.&lt;br>
+EBS는 EC2 인스턴스에 부착되어 사용된다.&lt;br>
+EC2 인스턴스가 종료되어도 EBS안에 있는 데이터는 유지된다.&lt;/p>
+&lt;p>&lt;strong>EBS 타입&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>SSD (Solid State Driver)
+&lt;ul>
+&lt;li>입출력이 많을 때 유리&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>HDD (Hard Disk Driver)
+&lt;ul>
+&lt;li>처리량이 많을 때 유리 (ex. 방대한 스트리밍 워크로드 등)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="elb-elastic-load-balancer">ELB (Elastic Load Balancer)&lt;/h3>
+&lt;p>EC2는 ELB를 사용하여 서버 트래픽을 원활하게 해준다.&lt;/p>
+&lt;p>&lt;strong>ELB 타입&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ALB (Application Load Balancer)&lt;/code>
+&lt;ul>
+&lt;li>OSI Application(7th) Layer에서 작동&lt;/li>
+&lt;li>HTTP, HTTPS와 같은 네트워크 트래픽을 제어(라우팅)할 때 적합&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>NLB (Network Load Balancer)&lt;/code>
+&lt;ul>
+&lt;li>OSI Transport(4th) Layer에서 작동&lt;/li>
+&lt;li>TCP/IP 모델 포함. TCP 트래픽을 관리(라우팅).&lt;/li>
+&lt;li>대량 요청에 적합 (ex. production 환경)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>CLB (Classic Load Balancer)&lt;/code>
+&lt;ul>
+&lt;li>ALB, NLB보다 성능이 뒤처지는 레거시&lt;/li>
+&lt;li>네트워크 호스트가 누구인지 알 수 없는 문제.&lt;br>
+믿어도 되는 호스트인지 판단 불가능.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>흔히 일어날 수 있는 ELB 에러&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>504 Gateway Time-out 에러
+&lt;ul>
+&lt;li>로드밸런서 최대 접속 시간 제한 (default 60초)&lt;/li>
+&lt;li>애플리케이션 규모가 크다면 시간 제한을 변경&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>X-Forwarded-For 헤더&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>HTTP/HTTPS 요청을 로드 밸런서에서 받을 때 &lt;code>출처&lt;/code>에 대한 정보를 담고 있다.&lt;/li>
+&lt;li>&lt;code>public IP address&lt;/code>는 DNS 요청에 의해 ELB에서 &lt;code>private IP address&lt;/code>로 인식.&lt;br>
+→ &lt;code>private IP address&lt;/code>가 EC2 인스턴스로 보내지는데, public IP address를 확인 불가능.&lt;br>
+→ 그래서 X-Forwarded-For 헤더에 &lt;code>public IP address&lt;/code>를 담아서 전달.&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h2 id="rds-relational-database-service">RDS (Relational Database Service)&lt;/h2>
+&lt;p>관계형 데이터베이스 서비스 생성&lt;/p>
+&lt;br/>
+&lt;h3 id="자동-백업-automated-backup">자동 백업 (Automated Backup)&lt;/h3>
+&lt;p>RDS에서 데이터베이스를 생성하면 자동 백업 기능이 default로 활성화 된다.&lt;br>
+1~35일의 보유 기간 내에 특정 시간으로 데이터베이스 상태를 복원할 수 있다.&lt;br>
+7~35일로 설정 가능하다.&lt;/p>
+&lt;p>자동 백업 기능은 스냅샷과 트랜잭션 로그를 생성 후 S3 버킷에 저장.&lt;br>
+복구 희망 날짜의 스냅샷과 트랜잭션 로그를 참조하여 복원.&lt;/p>
+&lt;p>&lt;strong>자동 백업 단점&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>백업 정보를 S3에 업로드하는 동안 입출력 지연 발생&lt;/li>
+&lt;li>원본 RDS 인스턴스를 삭제하면 백업 정보도 모두 사라짐&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="다중-가용-영역-multi-availability-zone">다중 가용 영역 (Multi Availability Zone)&lt;/h3>
+&lt;p>DB에서 어떤 이벤트가 발생할 때,&lt;br>
+기존 DB 인스턴스를 업데이트함과 동시에 가용 영역에 복제본이 만들어 진다.&lt;/p>
+&lt;p>가용 영역에 복제본 생성 실패 시,&lt;br>
+RDS가 자동 감지하여 다른 안정적인 가용 영역에 복제본 다시 생성한다.&lt;/p>
+&lt;p>만약 기존 인스턴스에 문제가 생기면 복제본으로 롤백한다.&lt;br>
+이를 재해 복구(Disaster Recovery)라고 한다.&lt;/p>
+&lt;br/>
+&lt;h3 id="읽기-전용-복사본-read-replica">읽기 전용 복사본 (Read Replica)&lt;/h3>
+&lt;p>데이터를 읽기 위한 데이터베이스 복제본.&lt;br>
+읽기 작업만 수행 가능.&lt;/p>
+&lt;p>읽기 전용 DB를 복제하여 트래픽 분산.&lt;br>
+최대 5개까지 복제 가능.&lt;/p>
+&lt;br/>
+&lt;h2 id="references">References&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="http://www.yes24.com/Product/Goods/116626210" target="_blank" rel="noopener"
+>업무에 바로 쓰는 AWS 입문 (김성민 / 2023)&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>23가지 디자인 패턴</title><link>/p/23%EA%B0%80%EC%A7%80-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/</link><pubDate>Sat, 07 Aug 2021 12:30:00 +0900</pubDate><guid>/p/23%EA%B0%80%EC%A7%80-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/</guid><description>&lt;h2 id="디자인-패턴이란">디자인 패턴이란?&lt;/h2>
 &lt;p>소프트웨어를 설계하는 원칙을 최종적으로 정의한 것이 SOLID 원칙이었고, 이 원칙을 지키며 설계를 해보니 공통적인 23가지의 패턴이 있었다. 이렇게 23가지의 디자인 패턴이 등장하게 되었다.&lt;/p>
 &lt;p>GoF(Gang of Four) : 디자인 패턴을 구체화하고 체계화한 4인&lt;br>
 에리히 감마(Erich Gamma), 리차드 헬름(Richard Helm), 랄프 존슨(Ralph Johnson), 존 블리시디스(John Vissides)&lt;/p>
