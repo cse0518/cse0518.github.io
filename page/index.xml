@@ -16,26 +16,20 @@
 &lt;/blockquote>
 &lt;h2 id="-skills">🛠 Skills&lt;/h2>
 &lt;blockquote>
-&lt;p>&lt;strong style="font-size:21px">Back-end&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>Java 8, 11, 17&lt;/li>
-&lt;li>Spring Boot, Spring Data JPA, Spring Rest Docs&lt;/li>
+&lt;li>Spring Boot, Spring MVC, Spring Data JPA&lt;/li>
 &lt;li>MySQL, MariaDB&lt;/li>
 &lt;li>AWS EC2, S3&lt;/li>
 &lt;li>Github Actions, Jenkins&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong style="font-size:21px">Etc.&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>Git, Github, Bitbucket&lt;/li>
-&lt;li>IntelliJ, VS Code&lt;/li>
-&lt;li>Confluence, Jira, Slack, Gather, Notion, Microsoft Teams&lt;/li>
+&lt;li>Docker, Git&lt;/li>
 &lt;/ul>
 &lt;/blockquote>
 &lt;h2 id="-work-experience--education">💼 Work Experience &amp;amp; Education&lt;/h2>
 &lt;blockquote>
 &lt;ul>
 &lt;li>
-&lt;p>&lt;strong style="font-size:17.5px">(주)휴머스온 인턴&lt;/strong>&lt;br>
+&lt;p>&lt;strong style="font-size:17.5px">(주)휴머스온&lt;/strong>&lt;br>
 2023. 03 ~&lt;br>
 Java + Spring 백엔드 개발&lt;/p>
 &lt;/li>
