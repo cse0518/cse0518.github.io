@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS ECS on 최승은 (Choi SeungEun)</title><link>/tags/aws-ecs/</link><description>Recent content in AWS ECS on 최승은 (Choi SeungEun)</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 14 May 2023 22:00:00 +0900</lastBuildDate><atom:link href="/tags/aws-ecs/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS 서비스 파악하기 - ECS, EKS</title><link>/posts/aws-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0-2/</link><pubDate>Sun, 14 May 2023 22:00:00 +0900</pubDate><guid>/posts/aws-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0-2/</guid><description>&lt;h2 id="서론">서론&lt;/h2>
+&lt;p>&lt;a class="link" href="https://www.wanted.co.kr/events/pre_challenge_be_6" target="_blank" rel="noopener"
+>원티드 프리온보딩 4월 백엔드 챌린지&lt;/a>에서&lt;br>
+도커를 활용하여 클라우드 배포까지 해보는 특강을 진행했다.&lt;/p>
+&lt;p>최근에 개인적으로 도커를 많이 사용하면서&lt;br>
+도커를 활용할 수 있는 다양한 정보를 접하고 싶었는데&lt;br>
+때마침 특강을 진행해서 감사히 듣게 되었다.&lt;/p>
+&lt;p>이미 알고 있던 기본적인 도커 개념과 활용 방법을 확실히 정리할 수 있어서 좋았고,&lt;br>
+가장 집중해서 본 부분은 클라우드 환경에서 ECS 또는 EKS를 사용하여&lt;br>
+도커를 활용하는 부분이었다.&lt;/p>
+&lt;p>ECS와 EKS에 대한 내용을 정리하고, 나중에 잘 활용해보고자&lt;br>
+블로그에 포스팅하게 되었다.&lt;/p>
+&lt;br/>
+&lt;h2 id="eks-elastic-kubernetes-service">EKS (Elastic Kubernetes Service)&lt;/h2>
+&lt;ul>
+&lt;li>관리형 쿠버네티스 서비스&lt;/li>
+&lt;li>사용자는 쿠버네티스 API를 사용하여 EKS 클러스터를 관리할 수 있다.&lt;/li>
+&lt;li>다양한 AWS 서비스와의 통합을 제공한다.&lt;/li>
+&lt;li>쿠버네티스 기반의 컨테이너 오케스트레이션을 가능하게 하며,&lt;br>
+이미 쿠버네티스에 익숙한 사용자 또는&lt;br>
+복잡한 애플리케이션 아키텍처를 가진 사용자에게 적합한 옵션이다.&lt;/li>
+&lt;li>복잡한 애플리케이션 아키텍처와 고도로 확장 가능한 환경을 구축할 수 있다.&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h2 id="ecs-elastic-container-service">ECS (Elastic Container Service)&lt;/h2>
+&lt;ul>
+&lt;li>관리형 컨테이너 오케스트레이션 서비스&lt;/li>
+&lt;li>도커 컨테이너를 실행하기 위한 기능 제공&lt;/li>
+&lt;li>사용자는 컨테이너 이미지를 정의하고 클러스터에 배포, 관리, 스케일링 할 수 있다.&lt;/li>
+&lt;li>컨테이너화된 애플리케이션을 운영하기에 적합한 환경을 제공한다.&lt;/li>
+&lt;/ul>
+&lt;p>쿠버네티스를 활용해야 하는 상황은 아니어서 주로 ECS 위주의 학습&lt;br>
+&lt;a class="link" href="https://docs.aws.amazon.com/ko_kr/ecs/index.html" target="_blank" rel="noopener"
+>기술 문서&lt;/a>도 한글로 잘 되어 있다!&lt;/p>
+&lt;br/>
+&lt;h3 id="ecs-서비스-종류">ECS 서비스 종류&lt;/h3>
+&lt;ul>
+&lt;li>호스트 유형
+&lt;ul>
+&lt;li>&lt;code>EC2&lt;/code>, &lt;code>Fargate&lt;/code>, &lt;code>External&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>EC2&lt;/code>
+&lt;ul>
+&lt;li>용량공급자를 통해 EC2 Auto-Scaling Group을 연결&lt;/li>
+&lt;li>ECS에서 제공하는 관리형 지표(Capacity Provider Reservation)에 따라 EC2 용량 추가 및 제거 가능&lt;/li>
+&lt;li>컨테이너 수의 증가 및 축소에 따라 EC2도 함께 증가 및 축소됨&lt;/li>
+&lt;li>EC2 요금만큼 과금
+&lt;ul>
+&lt;li>EC2 인스턴스는 계속 실행되어 있기 때문에 그만큼의 과금이 필요함&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Fargate&lt;/code>
+&lt;ul>
+&lt;li>서버리스 컨테이너 오케스트레이션&lt;/li>
+&lt;li>EC2 처럼 배포하거나 관리할 필요 없음 (서비스만 운영)&lt;/li>
+&lt;li>컨테이너 실행에 필요한 인프라 및 리소스 관리를 AWS가 대신 처리함&lt;/li>
+&lt;li>시간당 vCPU, Storage 용량 비용 부과&lt;/li>
+&lt;li>컨테이너를 쉽게 배포하고 스케일링할 수 있으며, 고가용성과 확장성을 제공함&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>External&lt;/code>
+&lt;ul>
+&lt;li>보안상의 이유로 AWS 인프라가 아닌 호스트에서 서비스가 동작하게 하고 싶을때 사용&lt;/li>
+&lt;li>호스트 및 컨테이너 등의 실제 서비스는 물리적으로 AWS 밖에서 동작&lt;/li>
+&lt;li>AWS 콘솔에서 관리&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="ecs-구성">ECS 구성&lt;/h3>
+&lt;ul>
+&lt;li>ECS Task Definition을 작성하고 그 Task 대로 컨테이너가 운영됨
+&lt;ul>
+&lt;li>JSon 양식&lt;/li>
+&lt;li>컨테이너 이미지, 컨테이너 자원 할당, 포트 구성, 환경변수, 로그 구성 등 설정&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>(1) AWS ECR 컨테이너 레지스트리에 컨테이너 이미지 push
+&lt;ul>
+&lt;li>도커 이미지를 private으로 쉽게 관리 가능&lt;/li>
+&lt;li>AWS 서비스와 연동이 더 간편함&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>(2) ECR에서 이미지를 관리하며 ECS Task Definition에 이미지 주입&lt;/li>
+&lt;li>(3) ECS 클러스터에 Task Definition 대로 적용
+&lt;ul>
+&lt;li>특정 이미지를 가지고 어떤 작업을 할 지, 어느 정도의 리소스를 사용할 지 등&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="eks와-비교">EKS와 비교&lt;/h3>
+&lt;ul>
+&lt;li>EKS는 트래픽이 없더라도 비용이 발생&lt;/li>
+&lt;li>ECS는 트래픽이 많아진다면 비용이 더 많이 발생할 수 있지만,&lt;br>
+토이 프로젝트 용도로는 좋다.
+&lt;ul>
+&lt;li>트래픽이 없으면 비용이 발생하지 않음&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Github Actions에 ecs 무중단 배포 템플릿이 제공됨
+&lt;ul>
+&lt;li>EKS는 공식 템플릿 없음&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h2 id="ecs-실습">ECS 실습&lt;/h2>
+&lt;h3 id="ecs-배포-과정">ECS 배포 과정&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>ECS 클러스터 생성&lt;/code>
+&lt;ul>
+&lt;li>템플릿 : 네트워킹 전용&lt;/li>
+&lt;li>VPC 설정 확인&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>AWS ECR 레포지토리 생성&lt;/code> → 사용할 이미지 push (AWS CLI 사용)
+&lt;ul>
+&lt;li>&amp;ldquo;푸시 명령 보기&amp;rdquo; 설명 참고&lt;/li>
+&lt;li>AWS CLI 환경 설정
+&lt;ul>
+&lt;li>IAM 계정 생성&lt;/li>
+&lt;li>IAM 권한 설정
+&lt;ul>
+&lt;li>AmazonECS_FullAccess&lt;/li>
+&lt;li>AmazonEC2ContainerRegistryFullAccess&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>access key 및 secret access key 생성&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>이미지 push&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>ELB (Elastic Load Balancing)&lt;/code>
+&lt;ul>
+&lt;li>EC2 → 로드밸런서 → 로드밸런서 생성 → Application Load Balancer&lt;/li>
+&lt;li>VPC 지정&lt;/li>
+&lt;li>Target Group 임시 생성&lt;/li>
+&lt;li>Load Balancer 생성 완료
+&lt;ul>
+&lt;li>Listener 삭제&lt;/li>
+&lt;li>Target Group 삭제&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Task Definition 정의&lt;/code>
+&lt;ul>
+&lt;li>Fargate&lt;/li>
+&lt;li>컨테이너 추가
+&lt;ul>
+&lt;li>ECS → Repository → 이미지 URI 확인&lt;/li>
+&lt;li>메모리 제한&lt;/li>
+&lt;li>포트 매핑&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Task Definition 생성&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Service 생성&lt;/code>
+&lt;ul>
+&lt;li>Task Definition → Service 생성&lt;/li>
+&lt;li>원하는 Task 선택 후 서비스 생성&lt;/li>
+&lt;li>VPC 및 서브넷 설정&lt;/li>
+&lt;li>보안 그룹
+&lt;ul>
+&lt;li>Task Definition에서 설정한 컨테이너 포트와 동일하게 설정&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>로드 밸런서 추가&lt;/li>
+&lt;li>Auto Scaling 설정&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="task와-service">Task와 Service&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>Task&lt;/code>
+&lt;ul>
+&lt;li>하나의 작업&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Service&lt;/code>
+&lt;ul>
+&lt;li>여러 개의 Task 관리&lt;/li>
+&lt;li>다양한 설정 가능 (ELB, Auto Scaling 등)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h3 id="github-actions-자동-배포">Github Actions 자동 배포&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>Deploy to Amazon ECS&lt;/code> workflow 제공&lt;/li>
+&lt;li>세부 설정 수정
+&lt;ul>
+&lt;li>Settings → Actions secrets 세팅 (AWS access key 관련)&lt;/li>
+&lt;li>도커 이미지 정보 및 Task 정보 세팅&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br/>
+&lt;h2 id="references">References&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.wanted.co.kr/events/pre_challenge_be_6" target="_blank" rel="noopener"
+>원티드 프리온보딩 4월 백엔드 챌린지&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://docs.aws.amazon.com/ko_kr/ecs/index.html" target="_blank" rel="noopener"
+>ECS 기술 문서&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
